@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <h1 class="text-5xl border-b border-gray-900/10 pb-4 pl-8">Home</h1>
+
+    <table class="table-auto w-full m-4 text-center border-b border-black">
+        <thead class="text-white bg-gray-700">
+            <tr>
+                <th scope="col" class="px-6 py-3">S.N.</th>
+                <th scope="col" class="px-6 py-3">Description</th>
+                <th scope="col" class="px-6 py-3">Name</th>
+                <th scope="col" class="px-6 py-3">Status</th>
+                <th scope="col" class="px-6 py-3">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for todo in todos %}
+            <tr class="even:bg-cyan-100">
+                <th scope="row" class="px-6 py-3">{{ forloop.counter }} </th>
+                <td class="px-6 py-4">{{ todo.name }} </td>
+                <td class="px-6 py-4">{{ todo.description }}</td>
+                <td class="px-6 py-4">{{ todo.status }}</td>
+                <td class="px-6 py-4">
+                    <a href=" {% url 'base:edit' todo_id=todo.id %} ">
+                        <button
+                            class="px-4 py-1 text-sm text-white font-semibold rounded-xl border bg-slate-700 hover:text-white hover:bg-blue-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-offset-2">
+                            Edit
+                        </button>
+                    </a>
+
+                    <a href=" {% url 'base:delete' todo_id=todo.id %}">
+                        <button
+                            class="px-4 py-1 text-sm text-gray-300 font-semibold rounded-xl border bg-red-500 hover:bg-red-700 hover:text-white hover:border-transparent focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-offset-2">
+                            Delete
+                        </button>
+                    </a>
+
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{% url 'base:create' %}"
+        class="ml-4 px-3 py-2 text-sm text-white font-semibold rounded-md border bg-emerald-500 hover:text-white hover:bg-green-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-offset-2">
+        Create New
+    </a>
+
+</body>
+
+</html>

@@ -1,0 +1,3 @@
+[submodule "anirate"]
+	path = anirate
+	url = https://github.com/Assyyn/anirate
